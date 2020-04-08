@@ -29,7 +29,6 @@ def do_deploy(archive_path):
         delet_dir = run("rm -rf {}/{}//web_static".format(path2, p2[0]))
         delet_dr1 = run("rm -rf /data/web_static/current")
         sl = run("ln -s {}/{}/ /data/web_static/current".format(path2, p2[0]))
-        print("New version deployed!")
 
         processes = [
             upload,
@@ -42,7 +41,7 @@ def do_deploy(archive_path):
             sl
         ]
         print("New version deployed!")
-        return all(processes.succeeded for operation in processes)
+        return all(operation.succeeded for operation in processes)
 
     else:
         return False

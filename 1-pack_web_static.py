@@ -5,6 +5,7 @@ from datetime import datetime
 from os.path import getsize
 
 
+@runs_once
 def do_pack():
     """Function that compress a files"""
     fil = "web_static_{:s}.tgz".format(datetime.now().strftime("%Y%m%d%H%M%S"))
@@ -17,5 +18,6 @@ def do_pack():
 
     if path.succeeded:
         print("web_static packed: versions/{} -> {}Bytes".format(fil, size))
+        return("versions/{}".format(fil))
     else:
         return None
