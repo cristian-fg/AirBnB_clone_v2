@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# init ssh
-
-ssh -i ~/.ssh/holberton ubuntu@54.91.43.217
