@@ -16,19 +16,19 @@ def do_deploy(archive_path):
         # ['web_static_20170315003959', 'tgz']
 
         put(archive_path, "/tmp/")
-        run("mkdir -p /data/web_static/releases/{}/".format(p2[0]))
+        sudo("mkdir -p /data/web_static/releases/{}/".format(p2[0]))
 
         data = "/data/web_static/releases"
-        run("tar -xzf /tmp/{} -C {}/{}/".format(p1[-1], data, p2[0]))
-        run("rm /tmp/{}".format(p1[-1]))
+        sudo("tar -xzf /tmp/{} -C {}/{}/".format(p1[-1], data, p2[0]))
+        sudo("rm /tmp/{}".format(p1[-1]))
 
         path = "mv /data/web_static/releases"
         path2 = "/data/web_static/releases"
-        run("{}/{}/web_static/* {}/{}/".format(path, p2[0], path2, p2[0]))
+        sudo("{}/{}/web_static/* {}/{}/".format(path, p2[0], path2, p2[0]))
 
-        run("rm -rf {}/{}//web_static".format(path2, p2[0]))
-        run("rm -rf /data/web_static/current")
-        run("ln -s {}/{}/ /data/web_static/current".format(path2, p2[0]))
+        sudo("rm -rf {}/{}//web_static".format(path2, p2[0]))
+        sudo("rm -rf /data/web_static/current")
+        sudo("ln -s {}/{}/ /data/web_static/current".format(path2, p2[0]))
 
         print("New version deployed!")
         return True
