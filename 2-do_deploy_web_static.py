@@ -15,7 +15,7 @@ def do_deploy(archive_path):
         p2 = p1[-1].split(".")
         # ['web_static_20170315003959', 'tgz']
 
-        put("{}".format(archive_path), "/tmp/{}".format(p1[-1]))
+        put(archive_path, "/tmp/")
         run("mkdir -p /data/web_static/releases/{}/".format(p2[0]))
 
         data = "/data/web_static/releases"
@@ -30,16 +30,6 @@ def do_deploy(archive_path):
         run("rm -rf /data/web_static/current")
         run("ln -s {}/{}/ /data/web_static/current".format(path2, p2[0]))
 
-        """ processes = [
-            upload,
-            crea_dir,
-            descom,
-            delet,
-            m,
-            delet_dir,
-            delet_dr1,
-            sl
-        ] """
         print("New version deployed!")
         return True
 
