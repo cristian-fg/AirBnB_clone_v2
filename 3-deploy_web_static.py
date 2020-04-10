@@ -3,6 +3,7 @@
 from fabric.api import *
 from datetime import datetime
 import os.path
+from os.path import getsize
 
 
 env.hosts = ["35.231.133.57", "54.91.43.217"]
