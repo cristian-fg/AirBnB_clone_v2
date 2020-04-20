@@ -44,9 +44,14 @@ class DBStorage():
         """ table = [User, State, City, Amenity, Place, Review] """
         table = [State, City, User, Place]
         new_dict = {}
+        if type(cls) is not str:
+            x = cls
+            cls = str(cls)
+        else:
+            x = eval(cls)
+
         if cls is not None:
-            data = eval(cls)
-            all_data = self.__session.query(data)
+            all_data = self.__session.query(x)
             for row in all_data:
                 key = cls + "." + row.id
                 new_dict[key] = row
@@ -82,3 +87,7 @@ class DBStorage():
         Session = scoped_session(Session_new)
         self.__session = Session()
         Base.metadata.create_all(self.__engine)
+
+    def close(self):
+        """method on the private session attribute"""
+        self.__session.close()
