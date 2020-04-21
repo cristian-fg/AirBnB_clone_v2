@@ -41,19 +41,21 @@ class DBStorage():
 
     def all(self, cls=None):
         """ALL function"""
-        """ table = [User, State, City, Amenity, Place, Review] """
-        table = [State, City, User, Place]
+        table = [User, State, City, Amenity, Place, Review]
+        """ table = [State, City, User, Place] """
         new_dict = {}
-        if type(cls) is not str:
+        """ if type(cls) is not str:
             x = cls
             cls = str(cls)
-        else:
-            x = eval(cls)
+        elif cls != None:
+            x = eval(cls) """
 
         if cls is not None:
-            all_data = self.__session.query(x)
+            if type(cls) is str:
+                cls = eval(cls)
+            all_data = self.__session.query(cls)
             for row in all_data:
-                key = cls + "." + row.id
+                key = cls.__name__ + "." + row.id
                 new_dict[key] = row
             return new_dict
 
