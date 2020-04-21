@@ -35,7 +35,7 @@ def display_text_2(text):
 @app.route('/number/<int:n>', strict_slashes=False)
 def display_number(n):
     """Display number only if it is"""
-    return "{} is number".format(n)
+    return "{} is a number".format(n)
 
 
 if __name__ == "__main__":
