@@ -8,7 +8,7 @@
             <H1>States</H1>
             <UL>
                 {% for k, v in data.items()|sort(attribute="1.name") %}
-                    <LI>{{ v.id }}<B>{{ v.name }}</B></LI>
+                    <LI>{{ v.id }}: <B>{{ v.name }}</B></LI>
                 {% endfor %}
             </UL>
         {%- elif id and '-' in id %}
