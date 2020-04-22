@@ -11,9 +11,8 @@
                     <LI>{{ v.id }}: <B>{{ v.name }}</B></LI>
                 {% endfor %}
             </UL>
-        {%- elif id and '-' in id %}
-            {%- for k, v in data.items()|sort(attribute="1.name") %}
-                {%- if id in k %}
+        {%- elif id %}
+            {%- for k, v in data.items() if id in v.id %}
                     <H1>State: {{ v.name }}</H1>
                     <H3>Cities:</H3>
                     <UL>
@@ -21,10 +20,9 @@
                             <LI>{{ val.id }}: <B>{{ val.name }}</B></LI>
                         {% endfor %}
                     </UL>
-                {%- endif %}
+                {%- else %}
+                    <H1>Not found!</H1>
             {%- endfor %}
-        {%- else %}
-            <H1>Not found!</H1>
         {%- endif %}
     </BODY>
 </HTML>
