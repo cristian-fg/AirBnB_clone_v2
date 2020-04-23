@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>AirBnB clone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/4-common.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-header.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-footer.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/6-filters.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/8-places.css')}}">
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.png')}}">
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <button>
+                Search
+            </button>
+            <div class="locations">
+                <h3>States</h3>
+                <h4>&nbsp;</h4>
+                <ul class="popover">
+                    {% for k, v in state.items()|sort(attribute="1.name") %}
+					<li><h2>{{ v.name }}:</h2>
+						<UL>
+							{% for citi in v.cities|sort(attribute="name") %}
+								<LI>{{ citi.name }}</LI>
+							{% endfor %}
+						</UL>
+					</li>
+				{% endfor %}
+                </ul>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>&nbsp;</h4>
+                <ul class="popover">
+                    {% for k, v in ameni.items()|sort(attribute="1.name") %}
+						<li>{{ v.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section class="places">
+            <h1>Places</h1>
+            {% for k, v in place.items()|sort(attribute="1.name") %}
+            <article>
+                <div class="place_tittle"><h2>{{ v.name }}</h2></div>
+                <div class="price_by_night">
+                    <p>${{ v.price_by_night }}</p>
+                </div>
+                <div class="information">
+                    <div class="max_guest">
+                        <div class="logo_guests"></div>
+                        <p>{{ v.max_guest }} Guest</p>
+                    </div>
+                    <div class="number_rooms">
+                        <div class="logo_rooms"></div>
+                        <p>{{ v.number_rooms}} Room</p>
+                    </div>
+                    <div class="number_bathrooms">
+                        <div class="logo_bath"></div>
+                        <p>{{ v.number_bathrooms }} Bathroom</p>
+                    </div>
+                </div>
+                <div class="user">
+                    <p><strong>Owner: </strong>Cristian G</p>
+                </div>
+                <div class="description">
+                    {% autoescape false %}
+                    <p>{{ v.description }}</p>
+                    {% endautoescape %} 
+                </div>
+            </article>
+            {% endfor %}
+        </section>
+    </div>
+    <footer>
+        <p class="text">Holberton School</p>
+    </footer>
+</body>
+</html>

@@ -58,6 +58,7 @@ h4{
     border: 1px #dddddd solid;
     border-radius: 4px;
     width: 23%;
+    z-index: 100;
 }
 
 li{
